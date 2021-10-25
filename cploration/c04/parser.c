@@ -15,7 +15,6 @@ char *strip(char *s){
 	strcpy(s, s_new);
 	return s;
 }
-//TODO: The while loop runs 5 times when add.asm is called. Thinks line 5 is the last line.
 void parse(FILE * file){
 	char line[MAX_LINE_NUMBER] = {0};
 	while (fgets(line, sizeof(line), file)){
