@@ -133,13 +133,13 @@ bool parse_A_instruction(const char *line, a_instruction *instr){
 	char *s_end = NULL;
 	long result = strtol(s, &s_end, 10);
 	if (s == s_end){
-		instr->y = (char*)malloc(strlen(line));
-		strcpy(instr->y, s);
+		instr->a_type.label = (char*)malloc(strlen(line));
+		strcpy(instr->a_type.label, s);
 		instr->is_addr = false;
 	}else if(*s_end != 0){
 		return false;
 	}else{
-		instr->y = result;
+		instr->a_type.address = result;
 		instr->is_addr = true;
 	}
 	return true;
@@ -162,7 +162,7 @@ void parse_C_instruction(char *line, c_instruction *instr){
 	instr->jump = str_to_jumpid(jump_val);
 	instr->dest = str_to_destid(dest_val);
 	instr->comp = str_to_compid(comp_val, a);
-	instr->a = a;
+	instr->a = (a=0) ? '0' : '1';
 }	
 void assemble(const char * file_name, instruction* instructions, int num_instructions) {
 
